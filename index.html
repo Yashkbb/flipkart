@@ -815,6 +815,16 @@ function submitBuyForm(){
     },
     prefill:{name:name,email:email,contact:''},
     notes:{plan:plan,customer_name:name,customer_email:email},
+    config:{
+      display:{
+        blocks:{
+          upi:{name:'Pay via UPI',instruments:[{method:'upi'}]},
+          other:{name:'Other Methods',instruments:[{method:'card'},{method:'netbanking'},{method:'wallet'}]}
+        },
+        sequence:['block.upi','block.other'],
+        preferences:{show_default_blocks:false}
+      }
+    },
     theme:{color:'#FF3CAC'},
     modal:{ondismiss:function(){}}
   };
