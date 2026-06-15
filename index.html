@@ -2039,7 +2039,7 @@ function proceedWithEmail() {
   fbq('track', 'InitiateCheckout', { value: 99, currency: 'INR' });
 
   /* Redirect to hosted Cashfree Payment Form */
-  var formUrl = "https://payments.cashfree.com/forms?code=Ecomeasy";
+  var formUrl = "https://payments.cashfree.com/forms/Ecomeasy";
   if (collectedEmail) {
     formUrl += "?email=" + encodeURIComponent(collectedEmail);
   }
