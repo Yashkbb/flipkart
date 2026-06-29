@@ -22,12 +22,7 @@ s.parentNode.insertBefore(t,s)}(window, document,'script',
 'https://connect.facebook.net/en_US/fbevents.js');
 fbq('init', '865687835806352');
 fbq('track', 'PageView');
-fbq('track', 'ViewContent', {
-  content_name: 'Meesho And Flipkart Auto Listing Tool',
-  content_category: 'E-commerce Tool',
-  value: 99,
-  currency: 'INR'
-});
+fbq('track', 'ViewContent', { content_name: 'Meesho And Flipkart Auto Listing Tool', content_category: 'E-commerce Tool', value: 99, currency: 'INR' });
 </script>
 <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=865687835806352&ev=PageView&noscript=1" /></noscript>
 
@@ -799,6 +794,7 @@ fbq('track', 'ViewContent', {
 <a href="https://wa.me/919213631880?text=Hi%21%20Maine%20abhi%20aapka%20Flipkart%20%2B%20Meesho%20Auto%20Listing%20Tool%20page%20dekha%20%F0%9F%91%80%20Mujhe%20kuch%20doubt%20hai%2C%20kya%20aap%20help%20kar%20sakte%20hain%3F" target="_blank" class="wa-float">💬</a>
 
 <script>
+  /* SuperProfile checkout URL */
   var SUPERPROFILE_URL = 'https://superprofile.bio/vp/meesho-ai-automation-tool-%E2%80%94-1000--listings-day-899';
 
   /* ===== VIDEO ===== */
@@ -863,18 +859,22 @@ fbq('track', 'ViewContent', {
     window.open('https://wa.me/919213631880?text=' + msg, '_blank');
   }
 
-  /* ===== PAYMENT + PIXEL FIX ===== */
-  /* YE WALA FUNCTION PEHLE WALA THA — AB INITIATECHECK ADDED */
+  /* ===== PAYMENT FLOW =====
+     1. "Kharido" button click
+     2. FB Pixel: InitiateCheckout fires HERE on this domain (ecomeasy.store)
+     3. Redirect to SuperProfile checkout
+     NOTE: InitiateCheckout pixel should be UNCHECKED/disabled in SuperProfile's
+     advance settings to avoid double-firing. Purchase pixel stays on SuperProfile
+     side since that's where payment actually completes.
+  ===== */
+
   function startPayment() {
-    // ✅ FIX: InitiateCheckout fire hoga har "Kharido" click pe
     fbq('track', 'InitiateCheckout', {
-      value: 99,
-      currency: 'INR',
       content_name: 'Meesho And Flipkart Auto Listing Tool',
       content_category: 'E-commerce Tool',
-      num_items: 1
+      value: 99,
+      currency: 'INR'
     });
-    // SuperProfile pe redirect
     window.location.href = SUPERPROFILE_URL;
   }
 
