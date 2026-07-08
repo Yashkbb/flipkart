@@ -903,35 +903,19 @@ fbq('track', 'ViewContent', { content_name: 'Meesho And Flipkart Auto Listing To
      3. FB Pixel fire → seedha Cashfree payment form pe redirect
      No backend, no SDK needed.
   ===== */
-  var CASHFREE_FORM_URL = 'https://ecomeasy.store/Payment?pixel=2';
+var SUPERPROFILE_URL = 'https://superprofile.bio/vp/meesho-ai-automation-tool-—-1000--listings-day-899';
 
   function startPayment() {
-  if (typeof fbq === 'function') {
-    fbq('track', 'InitiateCheckout', { value: 99, currency: 'INR' });
-  }
-  document.getElementById('emailOverlay').classList.add('active');
-  setTimeout(function(){
-    var i = document.getElementById('userEmailInput');
-    if (i) i.focus();
-  }, 150);
-}
-
-function proceedWithEmail() {
-  document.getElementById('emailOverlay').classList.remove('active');
-
-  var emailVal = document.getElementById('userEmailInput').value.trim();
-
-  if (typeof fbq === 'function') {
-    fbq('track', 'AddPaymentInfo', { value: 99, currency: 'INR' });
+    if (typeof fbq === 'function') {
+      fbq('track', 'InitiateCheckout', { value: 99, currency: 'INR' });
+    }
+    window.location.href = SUPERPROFILE_URL;
   }
 
-  var finalUrl = CASHFREE_FORM_URL;
-  if (emailVal) {
-    finalUrl += '&email=' + encodeURIComponent(emailVal);
+  function proceedWithEmail() {
+    // no longer used — kept as no-op so old references don't break
+    document.getElementById('emailOverlay').classList.remove('active');
   }
-
-  window.location.href = finalUrl;
-}
 
   /* Close email popup on backdrop click */
   document.getElementById('emailOverlay').addEventListener('click', function(e){
