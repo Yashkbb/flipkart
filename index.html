@@ -919,18 +919,11 @@ fbq('track', 'ViewContent', { content_name: 'Meesho And Flipkart Auto Listing To
 function proceedWithEmail() {
   document.getElementById('emailOverlay').classList.remove('active');
 
-  var emailVal = document.getElementById('userEmailInput').value.trim();
-
   if (typeof fbq === 'function') {
     fbq('track', 'AddPaymentInfo', { value: 99, currency: 'INR' });
   }
 
-  var finalUrl = CASHFREE_FORM_URL;
-  if (emailVal) {
-    finalUrl += '&email=' + encodeURIComponent(emailVal);
-  }
-
-  window.location.href = finalUrl;
+  window.location.href = CASHFREE_FORM_URL;
 }
 
   /* Close email popup on backdrop click */
