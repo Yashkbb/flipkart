@@ -223,7 +223,7 @@ fbq('track', 'ViewContent', { content_name: 'EcomEasy Vardaan Bundle Pack', cont
   .compare-panel { display:none; padding: 22px 18px; }
   .compare-panel.active { display:block; }
   .compare-panel ul { list-style:none; display:flex; flex-direction:column; gap:11px; }
-  .compare-panel li { font-size:14.5px; display:flex; gap:10px; align-items:flex-; }
+  .compare-panel li { font-size:14.5px; display:flex; gap:10px; align-items:flex-start; }
   .compare-panel.manual .time-badge { color:var(--bad); }
   .compare-panel.tool .time-badge { color:var(--good); }
   .time-badge { font-family:'JetBrains Mono',monospace; font-weight:700; font-size:13px; display:block; text-align:center; margin-top:14px; padding-top:14px; border-top:1px dashed var(--border); }
@@ -1252,39 +1252,56 @@ fbq('track', 'ViewContent', { content_name: 'EcomEasy Vardaan Bundle Pack', cont
   /* "Buy Now" anywhere on the page fires InitiateCheckout right away,
      then opens the email modal. Email itself is only used for delivery
      and can be skipped. */
-  /* Buy Now click — sirf email modal open karo, pixel yahan fire NAHI hoga */
-function startPayment() {
-  openEmailModal();
-}
-
-function submitEmailAndPay() {
-  var input = document.getElementById('emailInput');
-  var errEl = document.getElementById('emailError');
-  var email = input.value.trim();
-
-  if (!isValidEmail(email)) {
-    errEl.textContent = 'Sahi email daalo, jaise tumhara@email.com';
-    input.focus();
-    return;
-  }
-  errEl.textContent = '';
-
-  /* Email valid hai — ab pixel fire karo, phir redirect */
-  if (typeof fbq === 'function') {
-    fbq('track', 'InitiateCheckout', { value: 99, currency: 'INR' });
+  function startPayment() {
+    if (typeof fbq === 'function') {
+      fbq('track', 'InitiateCheckout', { value: 99, currency: 'INR' });
+    }
+    openEmailModal();
   }
 
-  var url = CASHFREE_FORM_URL + (CASHFREE_FORM_URL.indexOf('?') > -1 ? '&' : '?') + 'email=' + encodeURIComponent(email);
-  window.location.href = url;
-}
-
-/* Skip button — email nahi diya, phir bhi pixel fire karo redirect se pehle */
-function skipEmailAndPay() {
-  if (typeof fbq === 'function') {
-    fbq('track', 'InitiateCheckout', { value: 99, currency: 'INR' });
+  function openEmailModal() {
+    document.getElementById('emailOverlay').classList.add('active');
+    document.getElementById('emailError').textContent = '';
+    setTimeout(function(){ document.getElementById('emailInput').focus(); }, 80);
   }
-  window.location.href = CASHFREE_FORM_URL;
-}
+  function closeEmailModal() {
+    document.getElementById('emailOverlay').classList.remove('active');
+  }
+
+  function isValidEmail(v) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+  }
+
+  document.addEventListener('DOMContentLoaded', function(){
+    var emailInput = document.getElementById('emailInput');
+    if (emailInput) {
+      emailInput.addEventListener('keydown', function(e){
+        if (e.key === 'Enter') { e.preventDefault(); submitEmailAndPay(); }
+      });
+    }
+  });
+
+  function submitEmailAndPay() {
+    var input = document.getElementById('emailInput');
+    var errEl = document.getElementById('emailError');
+    var email = input.value.trim();
+
+    if (!isValidEmail(email)) {
+      errEl.textContent = 'Sahi email daalo, jaise tumhara@email.com';
+      input.focus();
+      return;
+    }
+    errEl.textContent = '';
+
+    var url = CASHFREE_FORM_URL + (CASHFREE_FORM_URL.indexOf('?') > -1 ? '&' : '?') + 'email=' + encodeURIComponent(email);
+    window.location.href = url;
+  }
+
+  /* Skip button — go straight to Cashfree without collecting email.
+     InitiateCheckout has already fired in startPayment(). */
+  function skipEmailAndPay() {
+    window.location.href = CASHFREE_FORM_URL;
+  }
 
   /* ===== DEMO AUTOFILL DATA ===== */
   var demoData = {
