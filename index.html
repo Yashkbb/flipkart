@@ -1242,18 +1242,20 @@ fbq('track', 'ViewContent', { content_name: 'EcomEasy Vardaan Bundle Pack', cont
 
   /* =====================================================================
      PAYMENT FLOW — direct to Cashfree
-     Buy Now button click → open email modal (with skip option).
-     InitiateCheckout pixel fires ONLY after the person either submits
-     a valid email or explicitly clicks Skip — i.e. right before the
-     redirect to Cashfree, not on the initial Buy Now click.
+     Buy Now button click → fire InitiateCheckout pixel immediately →
+     open email modal (with skip option) → redirect to Cashfree.
      NOTE: update CASHFREE_FORM_URL below to your Vardaan Bundle
      Cashfree payment link/form once it's created.
   ===================================================================== */
   var CASHFREE_FORM_URL = 'https://payments.cashfree.com/forms/ecomeasii';
 
-  /* "Buy Now" anywhere on the page — just opens the email modal.
-     No pixel fire here anymore. */
+  /* "Buy Now" anywhere on the page fires InitiateCheckout right away,
+     then opens the email modal. Email itself is only used for delivery
+     and can be skipped. */
   function startPayment() {
+    if (typeof fbq === 'function') {
+      fbq('track', 'InitiateCheckout', { value: 99, currency: 'INR' });
+    }
     openEmailModal();
   }
 
@@ -1291,21 +1293,13 @@ fbq('track', 'ViewContent', { content_name: 'EcomEasy Vardaan Bundle Pack', cont
     }
     errEl.textContent = '';
 
-    /* Email valid — fire InitiateCheckout right here, just before redirect */
-    if (typeof fbq === 'function') {
-      fbq('track', 'InitiateCheckout', { value: 99, currency: 'INR' });
-    }
-
     var url = CASHFREE_FORM_URL + (CASHFREE_FORM_URL.indexOf('?') > -1 ? '&' : '?') + 'email=' + encodeURIComponent(email);
     window.location.href = url;
   }
 
-  /* Skip button — email nahi diya, phir bhi checkout intent hai,
-     isliye pixel fire karo redirect se pehle. */
+  /* Skip button — go straight to Cashfree without collecting email.
+     InitiateCheckout has already fired in startPayment(). */
   function skipEmailAndPay() {
-    if (typeof fbq === 'function') {
-      fbq('track', 'InitiateCheckout', { value: 99, currency: 'INR' });
-    }
     window.location.href = CASHFREE_FORM_URL;
   }
 
