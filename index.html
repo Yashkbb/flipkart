@@ -409,16 +409,15 @@ fbq('track', 'ViewContent', { content_name: 'EcomEasy Vardaan Bundle Pack', cont
   .footer-links { display:flex; justify-content:center; gap:10px; flex-wrap:wrap; margin:16px 0 8px; font-size:12px; }
   .footer-links span { color:#2f4940; }
 
+  
   /* sticky bar */
   .sticky-bar { position:fixed; bottom:0; left:0; right:0; background:var(--surface); border-top:1px solid var(--border); padding:11px 18px; display:flex; align-items:center; justify-content:space-between; gap:10px; z-index:200; box-shadow:0 -6px 20px rgba(0,0,0,.08); }
-  .sticky-price { min-width:0; flex-shrink:1; overflow:hidden; }
-  .sticky-bar > div:last-child { flex-shrink:0; }
   .sticky-price .old { font-size:11px; color:var(--muted); text-decoration:line-through; }
   .sticky-price .new { font-family:'JetBrains Mono',monospace; font-size:18px; font-weight:700; background: linear-gradient(120deg, var(--teal-900), var(--teal-700)); -webkit-background-clip:text; background-clip:text; color:transparent; }
   .sticky-countdown { display:flex; align-items:center; gap:5px; font-size:10.5px; font-weight:700; color:var(--gold-dark); margin-top:3px; white-space:nowrap; }
   .sticky-countdown .sc-timer { font-family:'JetBrains Mono',monospace; background:var(--gold-light); border-radius:4px; padding:1px 5px; color:#1a1306; }
 
-  @media(max-width:600px){
+ @media(max-width:600px){
     section{ padding:44px 18px; }
     .section-title{ font-size:21px; }
     .hero{ padding:40px 18px 48px; }
@@ -444,20 +443,6 @@ fbq('track', 'ViewContent', { content_name: 'EcomEasy Vardaan Bundle Pack', cont
   @media(max-width:360px){
     .logo{ font-size:12.5px; }
     .btn-wa-sm{ padding:7px 9px; font-size:10.5px; }
-  }
-
-  /* ===== sticky bar mobile fix (Poochho + Kharido buttons) ===== */
-  @media(max-width:480px){
-    .sticky-bar{ padding:9px 10px; gap:8px; }
-    .sticky-bar > div[style*="display:flex"]{ gap:6px !important; flex-shrink:0; }
-    .sticky-bar .btn-whatsapp{ padding:9px 10px !important; font-size:11.5px !important; gap:4px; white-space:nowrap; }
-    .sticky-bar .btn-primary{ padding:9px 12px !important; font-size:12.5px !important; white-space:nowrap; animation:none; }
-    .sticky-bar .btn-primary::after{ display:none; }
-    .sticky-price .new{ font-size:16px; }
-  }
-  @media(max-width:360px){
-    .sticky-bar .btn-whatsapp{ padding:8px 8px !important; font-size:10.5px !important; }
-    .sticky-bar .btn-primary{ padding:8px 10px !important; font-size:11.5px !important; }
   }
 
   /* exit popup */
