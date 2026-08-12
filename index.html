@@ -418,7 +418,7 @@ fbq('track', 'ViewContent', { content_name: 'EcomEasy Vardaan Bundle Pack', cont
   .sticky-countdown { display:flex; align-items:center; gap:5px; font-size:10.5px; font-weight:700; color:var(--gold-dark); margin-top:3px; white-space:nowrap; }
   .sticky-countdown .sc-timer { font-family:'JetBrains Mono',monospace; background:var(--gold-light); border-radius:4px; padding:1px 5px; color:#1a1306; }
 
-@media(max-width:600px){
+  @media(max-width:600px){
     section{ padding:44px 18px; }
     .section-title{ font-size:21px; }
     .hero{ padding:40px 18px 48px; }
@@ -430,7 +430,7 @@ fbq('track', 'ViewContent', { content_name: 'EcomEasy Vardaan Bundle Pack', cont
     .demo-controls{ flex-direction:column; align-items:stretch; }
     .btn-autofill{ justify-content:center; }
     .sticky-countdown{ font-size:9.5px; }
-}
+  }
 
   /* ===== header mobile fix (WhatsApp button) ===== */
   @media(max-width:480px){
@@ -444,6 +444,20 @@ fbq('track', 'ViewContent', { content_name: 'EcomEasy Vardaan Bundle Pack', cont
   @media(max-width:360px){
     .logo{ font-size:12.5px; }
     .btn-wa-sm{ padding:7px 9px; font-size:10.5px; }
+  }
+
+  /* ===== sticky bar mobile fix (Poochho + Kharido buttons) ===== */
+  @media(max-width:480px){
+    .sticky-bar{ padding:9px 10px; gap:8px; }
+    .sticky-bar > div[style*="display:flex"]{ gap:6px !important; flex-shrink:0; }
+    .sticky-bar .btn-whatsapp{ padding:9px 10px !important; font-size:11.5px !important; gap:4px; white-space:nowrap; }
+    .sticky-bar .btn-primary{ padding:9px 12px !important; font-size:12.5px !important; white-space:nowrap; animation:none; }
+    .sticky-bar .btn-primary::after{ display:none; }
+    .sticky-price .new{ font-size:16px; }
+  }
+  @media(max-width:360px){
+    .sticky-bar .btn-whatsapp{ padding:8px 8px !important; font-size:10.5px !important; }
+    .sticky-bar .btn-primary{ padding:8px 10px !important; font-size:11.5px !important; }
   }
 
   /* exit popup */
