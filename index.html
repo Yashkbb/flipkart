@@ -418,31 +418,19 @@ fbq('track', 'ViewContent', { content_name: 'EcomEasy Vardaan Bundle Pack', cont
   .sticky-countdown { display:flex; align-items:center; gap:5px; font-size:10.5px; font-weight:700; color:var(--gold-dark); margin-top:3px; white-space:nowrap; }
   .sticky-countdown .sc-timer { font-family:'JetBrains Mono',monospace; background:var(--gold-light); border-radius:4px; padding:1px 5px; color:#1a1306; }
 
-  @media(max-width:600px){
+@media(max-width:600px){
     section{ padding:44px 18px; }
     .section-title{ font-size:21px; }
     .hero{ padding:40px 18px 48px; }
     .id-card-right{ padding:20px; }
-    .sticky-bar{ padding:9px 12px; gap:8px; }
-    .sticky-bar .btn-primary{ font-size:12.5px; padding:9px 13px; white-space:nowrap; }
-    .sticky-bar .btn-whatsapp{ font-size:11.5px; padding:9px 11px; white-space:nowrap; }
-    .sticky-price{ min-width:0; }
+    .sticky-bar .btn-primary{ font-size:13px; padding:10px 16px; }
     .sticky-price .old{ display:none; }
-    .sticky-price .new{ font-size:16px; }
     .stat-strip{ gap:16px; }
     .demo-platform-switch{ flex-direction:column; }
     .demo-controls{ flex-direction:column; align-items:stretch; }
     .btn-autofill{ justify-content:center; }
     .sticky-countdown{ font-size:9.5px; }
-  }
-  @media(max-width:380px){
-    .sticky-bar{ padding:8px 8px; gap:5px; }
-    .sticky-bar > div:last-child{ display:flex; gap:5px; flex-shrink:0; }
-    .sticky-bar .btn-whatsapp{ font-size:10.5px; padding:8px 8px; gap:4px; }
-    .sticky-bar .btn-primary{ font-size:11.5px; padding:8px 10px; gap:5px; }
-    .sticky-price .new{ font-size:14px; }
-    .sticky-countdown{ font-size:8px; gap:3px; }
-  }
+}
 
   /* ===== header mobile fix (WhatsApp button) ===== */
   @media(max-width:480px){
